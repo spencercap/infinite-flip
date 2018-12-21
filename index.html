@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>infinite flipper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,' rel='stylesheet' type='text/css'> -->
+    <link href="positron/positron.css" type="text/css" rel="stylesheet"></link>
+    
+    <style>
+
+        body {
+          margin: 0;
+          font-family: 'Work Sans', sans-serif;
+          font-weight: 300;
+
+          background: white;
+        
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height:  50px;
+
+            background: red;
+            z-index: 999999999;
+        }
+
+        .theContent {
+            width: 100%;
+            height: 2000px;
+
+            background: green;
+        }
+
+
+        .circleContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: pink;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* .circle {
+            width: 300px;
+            height: 300px;
+
+            background: yellowgreen;
+            border-radius: 35%;
+        } */
+
+        .scrollReader {
+            position: fixed;
+        }
+
+        .cContainer {
+            margin: 0 auto;
+            width: 400px;
+            height: 400px;
+            /* background: blue; */
+
+            transform-style: preserve-3d;
+        }
+
+        /* .bigRotater {
+            transform: rotateX(180deg);
+        } */
+
+        .circleShadowContainer {
+            display: flex;
+            justify-content: center;
+        }
+
+        .circleShadow {
+            position: absolute;
+            bottom: -45px;
+            width: 400px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(#4d4d4d 0% , transparent 70%);
+            opacity: 0.5;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: green;
+            border-radius: 50%;
+            text-align: center;
+            /* backface-visibility: hidden; */
+        }
+
+        .circle1 {
+            transform: translateZ(0.01px);
+            background: aqua;
+        }
+
+        /* .circle2 > div {
+            transform: rotateX(180deg);
+        } */
+
+        .circle2 {
+            /* transform: rotateX(180deg) translateZ(5px); */
+            transform: rotateX(180deg) translateZ(0.01px);
+            background: wheat;
+        }
+
+        .bigScroller {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            /* height: 100vh; */
+            overflow-y: scroll;
+        }
+
+        .spacer {
+            height: 4800px;
+        }
+
+        .perspectivo {
+            margin: 100px 0;
+            perspective: 800px;
+        }
+
+        .content {
+            font-size: 100px;
+            line-height: 300px;
+        }
+
+        /* .slightShade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background: linear-gradient(transparent 35%, rgba(56, 56, 56, 0.7));
+            
+            width: 100%;
+            height: 100%;
+        } */
+
+        
+
+
+
+
+        /* CSS ANIMATIONS */
+
+        .fader-out
+        {
+            animation-name: fader-out;
+            animation-duration: 200ms;
+            animation-timing-function: linear;
+        }
+
+        .swipe-left
+        {
+            animation-name: swipe-left;
+            animation-duration: 200ms;
+            animation-timing-function: linear;
+        }
+
+        @keyframes swipe-left
+        {
+            0%
+            {
+                left: -100vw;
+                opacity: 0;
+            }
+            
+            100%
+            {
+                left: 0;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fader-out
+        {
+            0%
+            {
+                opacity: 1;
+            }
+            
+            100%
+            {
+                opacity: 0;
+            }
+        }
+
+
+        /* MEDIA QUERIES */
+        @media (min-width: 666px) {
+            
+
+        }
+        @media (min-width: 500px) and (max-width: 665px) {
+
+
+        }
+        @media (min-width: 311px) and (max-width: 499px) {
+            
+
+        }
+        @media (max-width: 310px) {
+
+        }
+    </style>
+
+    <!-- scripts -->
+    <script src="positron/prefixfree.min.js" type="text/javascript"></script>
+    <script src="positron/prefixfree.dynamic-dom.min.js" type="text/javascript"></script>
+    <script src="monohm.js" type="text/javascript"></script>
+    <script src="positron/positron.js" type="text/javascript"></script>
+
+</head>
+<body >
+
+    <!-- <header>
+        spencer cap
+    </header> -->
+
+    <!-- <div class="theContent">
+       mmy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Morbi mollis tellus
+    </div> -->
+
+    <div class="scrollReader">init</div>
+
+
+    <div class="perspectivo">
+        <div class="cContainer">
+            <div class="circle circle1">
+                <div class="content">1</div>
+                <div class="slightShade"></div>
+            </div>
+            <div class="circle circle2">
+                <div class="content">2</div>
+                <div class="slightShade"></div>
+            </div>
+        </div>
+
+        <div class="circleShadowContainer">
+            <div class="circleShadow"></div>
+        </div>
+    </div>
+
+
+    <div class="bigScroller" onscroll="scrolling(event)">
+        <div class="spacer"></div>
+    </div>
+
+ 
+    
+    <!-- <div class="circleContainer flex-center">
+
+        <div class="circle flex-center">
+            <div class="title">side 1</div>
+        </div>
+
+    </div>
+
+    <div class="circleContainer flex-center">
+
+        <div class="circle flex-center">
+            <div class="title">side 2</div>
+        </div>
+
+    </div> -->
+
+
+<script>
+
+
+// document.addEventListener("DOMContentLoaded", function(event) { 
+  
+//     // let textarea = document.querySelector('textarea');
+//     let scrollingRegion = document.querySelector('.bigScroller');
+//     console.log(scrollingRegion);
+//     // let log = document.getElementById('log');
+
+//     scrollingRegion.onscroll = logScroll;
+
+//     function logScroll(e) {
+//         console.log(e.target.scrollTop);
+//         // log.textContent = `Scroll position: ${e.target.scrollTop}`;
+//     }
+
+// });
+
+
+function scrolling(e) {
+    // console.log(e);
+
+    var scrollReader = document.querySelector('.scrollReader');
+
+    
+    if (e.target.scrollTop) {
+        var scrollY = e.target.scrollTop;
+        scrollReader.innerHTML = scrollY;
+
+        var circle1 = document.querySelector('.circle1 > .content');
+        var circle2 = document.querySelector('.circle2 > .content');
+
+        var circl1shadow = document.querySelector('.circle1 > .slightShade');
+        var circl2shadow = document.querySelector('.circle2 > .slightShade');
+
+        var cContainer = document.querySelector('.cContainer');
+        var rotateX = scrollY / 800; // this val should be the height of the window
+        // console.log(rotateX);
+
+        
+        // TODO -> detect start and end 
+        // console.log(e.target.offsetHeight);
+        // if(e.target.offsetHeight + e.target.scrollTop == e.target.offsetHeight)
+        // {
+        //     alert("End");
+        // }
+        
+
+
+        // circle1
+        if ( 0.0 <= rotateX && rotateX < 0.5 ) {
+            circle1.innerHTML = '1';
+        }
+        else if ( 0.5 <= rotateX && rotateX < 1.5 ) {
+            circle1.innerHTML = '3';
+        }
+        else if ( 1.5 <= rotateX && rotateX < 2.5 ) {
+            circle1.innerHTML = '5';
+        }
+        else if ( 2.5 <= rotateX && rotateX < 3.5 ) {
+            circle1.innerHTML = '7';
+        }
+        else if ( 3.5 <= rotateX && rotateX < 4.5 ) {
+            circle1.innerHTML = '9';
+        }
+        else if ( 4.5 <= rotateX && rotateX < 5.5 ) {
+            circle1.innerHTML = '11';
+        }
+
+        // circle2
+        if ( 0.0 <= rotateX && rotateX < 1.0 ) {
+            circle2.innerHTML = '2';
+        }
+        else if ( 1.0 <= rotateX && rotateX < 2.0 ) {
+            circle2.innerHTML = '4';
+        }
+        else if ( 2.0 <= rotateX && rotateX < 3.0 ) {
+            circle2.innerHTML = '6';
+        }
+        else if ( 3.0 <= rotateX && rotateX < 4.0 ) {
+            circle2.innerHTML = '8';
+        }
+        else if ( 4.0 <= rotateX && rotateX < 5.0 ) {
+            circle2.innerHTML = '10';
+        }
+        else if ( 5.0 <= rotateX && rotateX < 6.0 ) {
+            circle2.innerHTML = '12';
+        }
+
+
+
+        // shadow 
+        var circleShadow = document.querySelector('.circleShadow');
+
+        let shadow = ( rotateX * 2) % 1;
+        if ( shadow > 0.5 ) {
+            shadow = 1 - shadow;
+        }
+        let shade = shadow * 100;
+        // console.log(shadow);
+        // console.log(shade);
+
+        
+        // ground shade
+        circleShadow.style.background = 'radial-gradient(#4d4d4d ' + shade + '%, transparent 70%)';
+
+
+        // circle gradient shadows
+        // let gradientShadow = shadow / 0.5;
+        // circl1shadow.style.opacity = gradientShadow;
+        // circl2shadow.style.opacity = gradientShadow;
+        
+        
+
+        // flipper 
+        cContainer.style.transform = 'rotateX(' + rotateX + 'turn)';
+
+    }
+    else if (e.target.scrollingElement.scrollTop) {
+        scrollReader.innerHTML = e.target.scrollingElement.scrollTop;
+    }
+    else {
+        console.log('cant compute scrolling');
+    }
+
+    // var scrollingRegion = document.querySelector('.bigScroller');
+
+    // console.log(scrollingRegion);
+    // console.log(scrollingRegion.scrollTop);
+    
+}
+
+
+</script>
+
+</body>
+</html>
